@@ -4,9 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages 
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
 
 def Home(requests):
     return render(requests,'main/home.html')
@@ -43,7 +41,7 @@ def Login(request):
             else:
                 # Log in the user and redirect to the home page upon successful login
                 login(request, user)  # Use Django's auth_login to log in
-                return redirect('home')  # Redirect to your home page URL name
+                return redirect('home')  # Redirect to your home page  
     
     # Render the login page template
     return render(request, 'main/login.html')
@@ -88,3 +86,9 @@ def Logout(request):
     return redirect('home') # redirect to home page
 
 
+# @login_required
+# def download_app(request):
+
+#     file_path = os.path.join('static', 'App.zip') 
+#     response = FileResponse(open(file_path, 'rb'), as_attachment=True)
+#     return response

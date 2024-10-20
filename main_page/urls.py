@@ -10,5 +10,6 @@ urlpatterns=[
     path('logout',views.Logout,name='logout'),
     path('contact',views.contact,name='contact'),
     path('Products',views.product,name='product'),
+    # path('Download Archive app',views.download_app,name='download_app'),
 
 ]

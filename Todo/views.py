@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect ,HttpResponse
+from django.shortcuts import render, redirect ,HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Todo_list
-
 
 @login_required  # Ensure the user is logged in if user is not authenticated it will redirect them to home page
 def todo(request):
@@ -34,7 +33,7 @@ def todo(request):
                 delete_item.delete() # delete the task
 
             except Todo_list.DoesNotExist: # handle Error
-                return redirect('todo') 
+                return HttpResponse('Task not found.', status=404)
             
     # Get tasks for the logged-in user
     tasks = Todo_list.objects.filter(user=request.user)  # Retrieve all tasks (both completed and incomplete)
