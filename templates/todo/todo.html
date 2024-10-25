@@ -1,166 +1,250 @@
-{% extends '../base.html' %}
-{% load static %}
-
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
     <style>
         body {
-            background-color: #000000;
+            font-family: Arial, sans-serif;
+            background-color: #030303;
+            margin: 0;
+            padding: 20px;
         }
 
         .container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 1200px;
+            max-width: 2000px;
             margin: auto;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        form {
-            display: flex; 
-            align-items: center;
-            background-color: #000000;
-            padding: 0px;
-            margin-top: 30px;
+        .task-form {
+            flex: 1;
+            min-width: 300px;
+            background: #0d0d0d; /* Lighter blue for task form */
+            padding: 20px;
             border-radius: 8px;
-            width: 600px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        input[type="text"] {
-            flex: 1; 
+        .task-section {
+            flex: 2;
+            min-width: 400px;
+            background: #0d0d0d; /* Lighter blue for task section */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #00c3ff; /* Requested color */
+        }
+
+        label {
+            margin: 10px 0 5px;
+            display: block;
+            font-weight: bold;
+            color: #00c3ff; /* Requested color */
+        }
+
+        input[type="text"], input[type="date"], textarea {
+            width: 95%;
             padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #444;
+            background-color: #030303;
+            margin-bottom: 15px;
+            border: 1px solid #00c3ff; 
             border-radius: 4px;
-            background-color: #333;
-            color: #f0f0f0;
+            font-size: 14px;
+            color: #00c3ff; /* Requested color */
+            transition: border-color 1s ease-in; /* Transition effect for border color */
         }
 
-        .submit {
-            background-color: #007bff; 
-            color: white; 
-            padding: 8px 12px; 
+        input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+            border-color: #000000; /* Requested border color on focus */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00c3ff; /* Requested color */
+            color: black; /* Black text */
             border: none;
             border-radius: 4px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 14px; 
-            width: auto; 
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transition effect */
         }
 
-        .submit:hover {
-            background-color: #0056b3; 
-        }
-
-        .task-list {
-            margin-top: 20px;
-            width: 600px; /*Same width as form */
+        button:hover {
+            background-color: #0099cc; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge button */
         }
 
         .task-item {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-item label {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Add this line to align the delete button to the right */
-            padding: 0px;
-            border-bottom: 1px solid #ffffff;
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 10px; 
         }
 
         .task-item p {
-            margin-left: 10px;  /*between checkbox and text*/
-            color: #ffffff;
+            margin: 0;
+            font-size: 16px; 
+            color: #00c3ff; /* Requested color */
         }
 
-        .delete-button {
-            background-color: #ff4d4d; 
+        .delete-button, .edit-button {
+            background-color: #dc3545; /* Red for delete */
             color: white; 
+            border-radius: 4px; 
             padding: 5px 10px; 
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 220px;
+            cursor: pointer; 
         }
 
         .delete-button:hover {
-            background-color: #ff1a1a; 
+        background-color: #c82333; /* Darker red on hover */
+        transform: scale(1.05); /* Slightly enlarge button */
+        transition: background-color 0.3s ease, transform 0.3s ease; 
         }
+
         .edit-button {
-            background-color: #00d9ff; 
-            color: rgb(0, 0, 0); 
-            padding: 5px 10px; 
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 220px;
+        background-color: #007bff; /* Blue for edit */
         }
 
         .edit-button:hover {
-            background-color: #86fbff; 
+        background-color: #0069d9; /* Darker blue on hover */
+        transform: scale(1.05); /* Slightly enlarge button */
+        transition: background-color 0.3s ease, transform 0.3s ease; 
         }
+
+        /* Animation for task items */
+        @keyframes fadeInUp {
+        from {
+            opacity: 0; 
+            transform: translateY(-20px); 
+        }
+        to {
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        }
+
+        .task-item {
+            animation-duration: 0.5s; 
+            animation-fill-mode: both; 
+            animation-name: fadeInUp; 
+        } 
+        .btn {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-form {
+            margin: 0;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="task-list">
-            <h1 style="color: white;">Active Tasks</h1>
-            {% for task in tasks %}
-            {% if not task.completed %}
-            <div class="task-item">
-                <form method="POST" style="margin: 0;">
-                    {% csrf_token %}
-                    <input type="hidden" name="completed_task_id" value="{{ task.id }}">
-                    <input type="hidden" name="completed" value="True">
-                    <input id="task{{task.id}}" type="checkbox" name="completed" onchange="this.form.submit();" value="True">
-                    <label for="task{{task.id}}"> 
-                        <p>{{ task.Title }}</p>
-                    </label>
-                </form>
-                <form method="POST" style="margin: 0;">
-                    {% csrf_token %}
-                    <input type="hidden" name="edit_task_id" value="{{ task.id }}">
-                    <input type="submit" value="Edit" class="edit-button">
-                </form>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        
-        <form method="POST">
-            {% csrf_token %}
-            <input type="text" name="title" placeholder="Enter your Task" required>
-            <input class="submit" type="submit" value="Add">
-        </form>
+<div class="container">
+    <!-- Form for adding new tasks -->
+    <form class="task-form" method="POST">
+        <h2>Add a New Task</h2>
+        {% csrf_token %}
+        <label for="taskTitle">Task Title</label>
+        <input type="text" id="taskTitle" name="taskTitle" required>
 
-        <!-- Completed tasks -->
-        <div class="completed-task">
-            <h1 style="color: white;">Completed Tasks</h1>
-            <div class="task-list">
-                {% for task in tasks %}
-                    {% if task.completed %}
+        <label for="taskDescription">Description</label>
+        <textarea id="taskDescription" name="taskDescription" rows="4" required></textarea>
+
+        <label for="taskDate">Due Date</label>
+        <input id="taskDate" type="date" name="taskDate" required>
+
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- Section for active and completed tasks -->
+    <div class="task-section">
+        <!-- Active tasks -->
+        <h1>Active Tasks</h1>
+        {% if tasks %}
+            {% for task in tasks %}
+                {% if not task.completed %}
                     <div class="task-item">
-                        <form method="POST" style="margin: 0;">
+                        <form method="POST" style="margin: 0; display: flex; align-items: center;">
                             {% csrf_token %}
                             <input type="hidden" name="completed_task_id" value="{{ task.id }}">
-                            <input type="hidden" name="completed" value="False">
-                            <input id="completed{{task.id}}" type="checkbox" name="completed" onchange="this.form.submit();" value="False" checked>
-                            <label for="completed{{task.id}}"> 
-                                <p>{{ task.Title }}</p>
+                            <input type="checkbox" id="completed{{task.id}}" name="completed" onchange="this.form.submit();" value="True">
+                            <label for="completed{{task.id}}">
+                                <p class="task-title" title="{{ task.Title }}">
+                                    {{ task.Title|truncatechars:50 }}
+                                </p>                
                             </label>
                         </form>
-                        <form method="POST" style="margin: 0;">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_task_id" value="{{ task.id }}">
-                            <input type="submit" value="Delete" class="delete-button">
-                        </form>
+                        <div class="btn">
+                            <form method="POST" class="btn-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="edit_task_id" value="{{ task.id }}">
+                                <input type="submit" value="Edit" class="edit-button">
+                            </form>
+                            <!-- Task Info Button -->
+                            <form method="POST" action="{% url 'task_info' %}" class="btn-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="Info_task_id" value="{{ task.id }}">
+                                <input type="submit" value="Task Info" class="edit-button">
+                            </form>
+                        </div>
                     </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+           <p>There are no tasks at the moment.</p>
+        {% endif %}
+        <!-- Completed tasks section -->
+        <div class="completed-section">
+            <h1>Completed Tasks</h1>
+            {% if tasks %}
+                {% for task in tasks %}
+                    {% if task.completed %}
+                        <div class="task-item">
+                            <form method="POST" style="margin: 0; display: flex; align-items: center;">
+                                {% csrf_token %}
+                                <input type="hidden" name="completed_task_id" value="{{ task.id }}">
+                                <input type="hidden" name="completed" value="False">
+                                <input id="completed{{task.id}}" type="checkbox" name="completed" onchange="this.form.submit();" value="False" checked>
+                                <label for="completed{{task.id}}">
+                                    <p class="task-title" title="{{ task.Title }}">
+                                        {{ task.Title|truncatechars:50 }}
+                                    </p>      
+                                </label>
+                            </form>
+                            <form method="POST" style="margin-left: 10px;">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_task_id" value="{{ task.id }}">
+                                <input type="submit" value="Delete" class="delete-button">
+                            </form>
+                        </div>
                     {% endif %}
                 {% endfor %}
-            </div>
+            {% else %}
+                <p>There are no completed tasks yet.</p>
+            {% endif %}
         </div>
     </div>
+</div>
 
 </body>
 </html>
-{% endblock content %}

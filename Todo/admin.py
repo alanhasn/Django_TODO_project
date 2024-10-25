@@ -5,7 +5,7 @@ from . import models
 
 class Todo_lists(admin.ModelAdmin):
     # Specify the fields to display in the list view
-    list_display = ['id','Title','completed','user']
+    list_display = ['id','Title','completed','Date',"Description"]
     list_filter=['user','completed','Title','id']  
     # Enable search functionality
     search_fields =['Title']

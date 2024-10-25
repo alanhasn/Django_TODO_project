@@ -3,32 +3,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="icon" href="{% static 'image/logoo.ico' %}">
     <title>Simorg Todo</title>
 
     <style>
-        /* Navbar styles */
         body {
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
             font-family: Arial, sans-serif;
         }
         .navbar {
-            background-color: rgb(230, 57, 70); /* Navbar background color */
+            background-color: rgb(230, 57, 70);
             color: white;
             padding: 10px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid black; /* Black border at the bottom */
+            border-bottom: 2px solid black; 
         }
         .navbar a {
-            color: white; /* Navbar link color */
+            color: white; 
             text-decoration: none;
             padding: 10px 15px;
         }
         .navbar-left a:hover {
-            border-bottom: 2px solid rgba(255, 255, 255, 0.7); /* Underline on hover */
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7); 
         }
         .navbar-left {
             display: flex;
@@ -44,8 +42,8 @@
         }
         .navbar-right a {
             margin-left: 10px;
-            background-color: rgba(255, 255, 255, 0.8); /* Button background */
-            color: rgb(230, 57, 70); /* Button text color */
+            background-color: rgba(255, 255, 255, 0.8); 
+            color: rgb(230, 57, 70); 
             padding: 8px 15px;
             border: none;
             border-radius: 4px;
@@ -53,16 +51,15 @@
             transition: background-color 0.3s;
         }
         .navbar-right a:hover {
-            background-color: rgba(255, 255, 255, 0.9); /* Button hover color */
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Footer styles */
         .footer {
-            background-color: rgb(230, 57, 70); /* Footer background color */
+            background-color: rgb(230, 57, 70); 
             color: #fff;
-            padding: 20px 0; /* Increased padding */
+            padding: 20px 0; 
             margin-top: 100px;
-            border-top: 2px solid black; /* Black border at the top */
+            border-top: 2px solid black; 
         }
         .footer-content {
             display: flex;
@@ -76,7 +73,7 @@
         }
         .footer-section h3 {
             margin-bottom: 20px;
-            color: #fff; /* Heading color */
+            color: #fff;
         }
         .footer-section ul {
             list-style-type: none;
@@ -90,7 +87,7 @@
             text-decoration: none;  
         }
         .footer-section a:hover {
-            color: rgba(255, 255, 255, 0.7); /* Link hover color */
+            color: rgba(255, 255, 255, 0.7); 
         }
         .footer-bottom {
             text-align: center;
@@ -98,7 +95,7 @@
         }
         .footer-bottom p {
             font-size: 14px;
-            color: black; /* Black text color for footer copyright */
+            color: black; 
         }
     </style>
 </head>
