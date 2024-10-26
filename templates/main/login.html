@@ -11,51 +11,49 @@
 
     <style>
         body {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(230, 57, 70, 0.8));
-            animation: backgroundChange 10s infinite alternate;
+            background: linear-gradient(135deg, #00c3ff, rgba(0, 0, 0, 0.9));
             font-family: Arial, sans-serif;
             height: 100vh;
             margin: 0;
-            background-color: black;
-            animation: backgroundChange 10s infinite alternate; /* Background color change */
+            animation: backgroundChange 10s infinite alternate;
         }
 
         .login-container {
             background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 5px 15px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
             padding: 2rem;
             margin: auto; /* Center container */
             margin-top: 100px;
+            backdrop-filter: blur(10px); /* Adding a blur effect */
         }
 
         .input-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
-            width: 80%;
+            width: 100%;
         }
 
-
         .input-group input {
-            width: 100%;
+            width: 80%;
             padding: 10px 10px 10px 40px;
             background: transparent;
             border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 5px;
-            color: white;
+            color: #00c3ff; /* Input text color */
             font-size: 16px;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, background-color 0.3s;
         }
 
         .input-group input::placeholder {
             color: rgba(255, 255, 255, 0.7);
-
         }
 
         .input-group input:focus {
-            border-color: rgb(230, 57, 70);
+            border-color: #00c3ff; /* Focus border color */
             outline: none;
+            background-color: rgba(0, 195, 255, 0.1); /* Background color on focus */
         }
 
         .input-group i {
@@ -70,17 +68,16 @@
             width: 100%;
             padding: 10px;
             color: white;
-            background-color: rgb(230, 57, 70);
+            background: linear-gradient(135deg, #00c3ff, #2300ff);
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         button:hover {
-            background-color: white;
-            color: rgb(255, 9, 9);        
+            background: linear-gradient(135deg, #2300ff, #00c3ff);
             transform: scale(1.05);
         }
 
@@ -96,7 +93,7 @@
         }
 
         .forgot-password a:hover {
-            color: rgb(0, 0, 0);
+            color: #00c3ff; /* Change color on hover */
         }
 
         form h1 {
@@ -135,7 +132,7 @@
             {% csrf_token %} 
             {% if messages %}
             <div class="messages">
-            {% for message in messages %}
+                {% for message in messages %}
                     <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
                 {% endfor %}
             </div>

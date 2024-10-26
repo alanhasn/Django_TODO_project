@@ -21,6 +21,7 @@ def contact(requests):
 def product(requests):
     return render(requests,'main/product.html')
 
+
 def Login(request): 
     # Check if the HTTP request method is POST
     if request.method == "POST":

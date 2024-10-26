@@ -42,7 +42,9 @@ def todo(request):
     return render(request, 'todo/todo.html', {'tasks': tasks})  # Pass all tasks to the template
 
 
+@login_required
 def Task_Info(request):
+    info=None
     if request.method == "POST":
         info_task_id = request.POST.get('Info_task_id')
 

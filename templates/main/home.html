@@ -10,6 +10,56 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Home</title>
     <style>
+        /* General Styles */
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            color: white;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .text-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .text-section h1 {
+            color: #00c3ff; /* Main heading color */
+            transition: color 0.3s;
+        }
+
+        .text-section h1:hover {
+            color: #f0db4f; /* Change on hover */
+        }
+
+        .text-section p {
+            color: #dcdcdc; /* Subtext color */
+        }
+
+        .start-button {
+            background-color: #00c3ff; /* Button color */
+            color: black; /* Button text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: rgba(0, 195, 255, 0.8); /* Button hover color */
+            transform: scale(1.05);
+        }
+
         /* Testimonial Section */
         .testimonial-section {
             padding: 50px 20px;
@@ -25,47 +75,42 @@
         .testimonial {
             margin: 20px;
             font-size: 1.2em;
-            color: #dc4848;
+            color: #00c3ff; /* Testimonial text color */
             max-width: 300px; 
-            background-color: rgba(16, 16, 16, 0.526);
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background for testimonials */
             border-radius: 10px;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center align items */
-            text-align: center; /* Center text */
+            align-items: center;
+            text-align: center;
             transition: background-color 1s;
         }
+
         .testimonial:hover {
-             background-color: #00ffee58;
-             color: black;
-             
+            background-color: #00ffee58; /* Highlight color on hover */
+            color: black;
         }
 
-        body {
-            background-color: black;
-            font-family: Arial, sans-serif;
-            color: white;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
+        /* About Section */
         .about-container {
             padding: 20px;
             max-width: 800px;
             margin: auto;
         }
-        .p h1 {
-            color: #f0db4f;
+
+        .about-container h1 {
+            color: #00c3ff; /* Heading color */
             text-align: center;
             transition: color 1s;
         }
-        .p h1:hover {
-            color: #00f2ff;
-            text-align: center;
+
+        .about-container h1:hover {
+            color: #f0db4f; /* Change on hover */
         }
-        .p p {
-            color: #dcdcdc;
+
+        .about-container p {
+            color: #dcdcdc; /* Text color for paragraphs */
             font-size: 20px;
         }
     </style>
@@ -80,9 +125,8 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'todo' %}" class="start-button">Start Now</a>
             {% else %}
-                  <a href="{% url 'login' %}" class="start-button">Start Now</a>
+                <a href="{% url 'signup' %}" class="start-button">Start Now</a>
             {% endif %}
-            
         </div>
         <div class="image-section">
             <img src="{% static 'image/todo(1).jpg' %}" alt="Organize Your Life">
@@ -109,27 +153,15 @@
         </div>
     </div>
     
-    <!--About us section-->
+    <!-- About Us Section -->
     <div class="about-container">
-        <div class="p">
-            <h1>Welcome to Simorg Todo App</h1>
-            <p>
-                Simorg Todo is designed to help you stay organized and efficient. Our app provides a simple and intuitive way for you to manage your tasks, whether they're work-related, personal, or anything in between. With Simorg Todo, you can easily add, edit, and track tasks, ensuring you never miss a deadline.
-            </p>
-            <p>
-                Our goal is to provide users with a streamlined, distraction-free task management experience. The interface is designed to be minimalist, so you can focus on what matters the most: getting things done. With features like task completion tracking, prioritization, and a user-friendly design, Simorg Todo makes managing your to-do list a breeze.
-            </p>
-            <p>
-                We are continuously improving and expanding the app’s features based on user feedback. Our mission is to help you achieve more with less effort, so you can spend more time doing what you love, while staying productive.
-            </p>
-            <p>
-                Thank you for choosing Simorg Todo. Let’s stay organized and achieve our goals together.
-            </p>
-        </div>    
+        <h1>Welcome to Simorg Todo App</h1>
+        <p>Simorg Todo is designed to help you stay organized and efficient. Our app provides a simple and intuitive way for you to manage your tasks, whether they're work-related, personal, or anything in between. With Simorg Todo, you can easily add, edit, and track tasks, ensuring you never miss a deadline.</p>
+        <p>Our goal is to provide users with a streamlined, distraction-free task management experience. The interface is designed to be minimalist, so you can focus on what matters the most: getting things done. With features like task completion tracking, prioritization, and a user-friendly design, Simorg Todo makes managing your to-do list a breeze.</p>
+        <p>We are continuously improving and expanding the app’s features based on user feedback. Our mission is to help you achieve more with less effort, so you can spend more time doing what you love, while staying productive.</p>
+        <p>Thank you for choosing Simorg Todo. Let’s stay organized and achieve our goals together.</p>
     </div>
         
-   
-
 </body>
 </html>
 {% endblock content %}

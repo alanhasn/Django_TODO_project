@@ -7,13 +7,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #030303;
-            color: #000000;
+            background-color: #000000;
+            color: #ffffff;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .info-container {
-            background-color: #ffffff;
+            background-color: #000000;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -28,21 +31,24 @@
         p {
             font-size: 16px;
         }
+
     </style>
 </head>
 <body>
 
-<div class="info-container">
-    <h2>Task Information</h2>
-    {% if info %}
-        <p><strong>Title:</strong> {{ info.Title }}</p>
-        <p><strong>Description:</strong> {{ info.Description }}</p>
-        <p><strong>Due Date:</strong> {{ info.Date }}</p>
-        <p><strong>Completed:</strong> {{ info.completed }}</p>
-    {% else %}
-        <p>No task information available.</p>
-    {% endif %}
-</div>
+    <div class="info-container">
+        <h2>Task Information</h2>
+        {% if info %}
+            <p><strong>Title:</strong> {{ info.Title }}</p>
+            <p><strong>Description:</strong> {{ info.Description }}</p>
+            <p><strong>Due Date:</strong> {{ info.Date }}</p>
+            <p><strong>Completed:</strong> {{ info.completed }}</p>
+        {% else %}
+            <p>No task information available.</p>
+        {% endif %}
+
+    </div>
+
 
 </body>
 </html>
