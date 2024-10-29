@@ -270,7 +270,7 @@
                         <div class="btn">
                             <form method="POST" class="btn-form">
                                 {% csrf_token %}
-                                <input type="hidden" name="edit_task_id" value="{{ task.id }}">
+                                <input type="hidden" name="edit_task_id" value="{{ task.task_text }}">
                                 <input type="submit" value="Edit" class="edit-button">
                             </form>
                             <!-- Task Info Button -->

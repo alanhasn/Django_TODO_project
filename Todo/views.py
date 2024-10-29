@@ -11,7 +11,7 @@ def todo(request):
        completed_task_id = request.POST.get('completed_task_id') # get the completed task id 
        completed_status = request.POST.get('completed')  # Get the status of the checkbox
        delete_task_id = request.POST.get('delete_task_id') # get the id of the task the user want to delete
-
+       edit_task_id = request.POST.get('edit_task_id')
 
 
     # Check if a new task is being added
@@ -29,7 +29,7 @@ def todo(request):
             task.save()  # Save the changes
          except Todo_list.DoesNotExist:
                 return HttpResponse('Task not found.', status=404)
-                   
+         
        if delete_task_id: # ensure there is id
             try:           
                 delete_item=Todo_list.objects.get(id=delete_task_id,user=request.user)# retrieve the task the user want to delete
@@ -37,10 +37,11 @@ def todo(request):
 
             except Todo_list.DoesNotExist: # handle Error
                 return HttpResponse('Task not found.', status=404)
+       if edit_task_id:
+           task=Todo_list 
             
     tasks = Todo_list.objects.filter(user=request.user)  # Retrieve all tasks (both completed and incomplete)
     return render(request, 'todo/todo.html', {'tasks': tasks})  # Pass all tasks to the template
-
 
 @login_required
 def Task_Info(request):
@@ -53,3 +54,4 @@ def Task_Info(request):
             
     tasks = Todo_list.objects.filter(user=request.user)  # Retrieve all tasks (both completed and incomplete)
     return render(request,"todo/show_info.html",{"info":info , "tasks":tasks})       
+
