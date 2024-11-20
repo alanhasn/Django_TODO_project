@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Simorg Todo</title>
     <style>
-        /* General styles */
-        body {
+           /* General styles */
+           body {
             font-family: 'Arial', sans-serif;
             background-color: black;
             color: #00c3ff;
@@ -58,10 +58,12 @@
 
         form input,
         form textarea {
+            background-color: #000000;
             width: 100%;
             padding: 10px;
+            color: aliceblue;
             margin-bottom: 15px;
-            border: 1px solid #00c3ff;
+            border: 2px solid #00c3ff;
             border-radius: 4px;
             font-size: 16px;
             transition: border-color 0.3s ease;
@@ -69,7 +71,7 @@
 
         form input:focus,
         form textarea:focus {
-            border-color: #0099cc;
+            border-color: #002aff;
             outline: none;
         }
 
@@ -153,32 +155,43 @@
                 opacity: 1;
             }
         }   
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Additional media query styles */
+        @media (max-width: 768px) {
+            form button[type="submit"] {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
+<div class="container">
+    <header>
+        <h1>Contact Simorg Todo</h1>
+    </header>
 
-    <!--Contact form-->
-    <div class="container">
-        <h1>Contact Us</h1>
-        <p>We'd love to hear from you! Please fill out the form below to get in touch with us:</p>
-
-        <div class="contact-form">
-            <form method="POST" action="{% url 'contact' %}">
-                {% csrf_token %}
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Your email" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
-
-                <input type="submit" value="Send Message">
-            </form>
-        </div>
+    <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <ul>
+            <li>📧 Email: support@simorgtodo.com</li>
+            <li>📞 Phone: +1 (555) 123-4567</li>
+            <li>🌐 Website: www.simorgtodo.com</li>
+        </ul>
     </div>
 
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</div>
 </body>
 </html>
-{% endblock content %}
+{% endblock %}

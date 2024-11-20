@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            background-color: #030303;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 2000px;
+            margin: auto;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            color: #00c3ff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 2px solid #00c3ff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #00c3ff;
+            color: black;
+        }
+
+        .task-form {
+            flex: 1;
+            min-width: 300px;
+            background: #0d0d0d; 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.5s forwards; /* Animation for task form */
+        }
+
+        .task-section {
+            flex: 2;
+            min-width: 400px;
+            background: #0d0d0d; 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.5s forwards; /* Animation for task section */
+        }
+
+        h1, h2 {
+            color: #ffffff; 
+        }
+
+        label {
+            margin: 10px 0 5px;
+            display: block;
+            font-weight: bold;
+            color: #00c3ff; 
+        }
+
+        input[type="text"], input[type="date"], textarea {
+            width: 95%;
+            padding: 10px;
+            background-color: #030303;
+            margin-bottom: 15px;
+            border: 1px solid #00c3ff; 
+            border-radius: 4px;
+            font-size: 14px;
+            color: #00c3ff; 
+            transition: border-color 0.3s ease; 
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+            border-color: #000000; 
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00c3ff; 
+            color: black; 
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+        }
+
+        button:hover {
+            background-color: #0099cc; 
+            transform: scale(1.05); 
+        }
+
+        .task-item {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInUp 0.5s forwards; /* Animation for task items */
+        }
+
+        .task-item label {
+            display: flex;
+            align-items: center;
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 10px; 
+        }
+
+        .task-item p {
+            margin: 0;
+            font-size: 16px; 
+            color: #00c3ff; 
+        }
+
+        .delete-button, .edit-button {
+            background-color: #dc3545; 
+            color: white; 
+            border-radius: 4px; 
+            padding: 5px 10px; 
+            cursor: pointer; 
+        }
+
+        .delete-button:hover {
+            background-color: #c82333; 
+            transform: scale(1.05); 
+            transition: background-color 0.3s ease; 
+        }
+
+        .edit-button {
+            background-color: #007bff; 
+        }
+
+        .edit-button:hover {
+            background-color: #0069d9; 
+            transform: scale(1.05); 
+            transition: background-color 0.3s ease; 
+        }
+
+        .search-container {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            animation: fadeInUp 0.5s forwards; /* Animation for search container */
+        }
+
+        .search-input {
+            padding: 10px;
+            border: 1px solid #00c3ff;
+            border-radius: 4px;
+            margin-right: 10px;
+            width: 200px;
+            background: transparent;
+            color: #00c3ff;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-input:focus {
+            border-color: #000000;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-form {
+            margin: 0;
+        }
+
+        .task-section p {
+            color: #0099cc;
+        }
+
+        .navbar form .search-button {
+            width: 100px;
+            height: 40px;
+            margin-right: 20px;
+        }
+        .navbar form .search-input {
+            width: 200px;
+            margin-top: 15px;
+        }
+
+        .navbar form {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Animation for task items */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0; 
+                transform: translateY(-20px); 
+            }
+            to {
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="{% url 'todo' %}" class="back-link">Back</a>
+    <div class="search-container">
+        <form method="GET" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="text" name="search_text" class="search-input" placeholder="Search tasks by Title..." value="{{ request.GET.search_text }}">
+            <button class="search-button">Search</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="task-section">
+        <h1>Search Results</h1>
+        {% if info %}
+            {% for task in info %}
+                <div class="task-item">
+                    <p class="task-title" title="{{ task.Title }}">
+                        {{ task.Title|truncatechars:50 }}
+                    </p>
+                    <div class="btn">
+                        <form method="POST" action="{% url 'edit' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="edit_task_id" value="{{ task.id }}">
+                            <input type="submit" value="Edit" class="edit-button">
+                        </form>
+                        <form method="POST" action="{% url 'todo' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_task_id" value="{{ task.id }}">
+                            <input type="submit" value="Delete" class="delete-button">
+                        </form>
+                        <form method="POST" action="{% url 'task_info' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="Info_task_id" value="{{ task.id }}">
+                            <input type="submit" value="Task Info" class="edit-button">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="color: #00c3ff;">No tasks found matching your search.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -224,7 +224,7 @@
 <nav class="navbar">
     <a href="{% url 'home' %}" class="back-link">Back</a>
     <div class="search-container">
-        <form method="POST">
+        <form method="GET" , action="{% url 'search' %}">
             {% csrf_token %}
             <input type="text" name="search_text" class="search-input" placeholder="Search tasks by Title...">
             <button class="search-button">Search</button>
