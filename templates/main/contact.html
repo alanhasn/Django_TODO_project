@@ -8,73 +8,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Simorg Todo</title>
     <style>
+        /* General styles */
         body {
+            font-family: 'Arial', sans-serif;
             background-color: black;
-            font-family: Arial, sans-serif;
-            color: white;
-            margin: 0;
+            color: #00c3ff;
+            line-height: 1.6;
             padding: 0;
+            margin: 0;
+            transition: background-color 0.5s ease;
         }
+
         .container {
-            padding: 20px;
-            max-width: 800px;
+            width: 80%;
             margin: auto;
-        }
-        h1 {
-            color: red;
-            text-align: center;
-        }
-        p {
-            color: #dcdcdc;
-            text-align: center;
-        }
-        .contact-info {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .contact-info p {
-            margin: 5px 0;
-        }
-        .contact-info a {
-            color: #f0db4f;
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        .contact-form {
-            margin-top: 40px;
-            background-color: #333;
+            overflow: hidden;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
         }
-        .contact-form input, .contact-form textarea {
+
+        /* Header styles */
+        header {
+            background: #00c3ff;
+            color: black;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.5s ease;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Form styles */
+        form {
+            background: #000000;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        form:hover {
+            transform: scale(1.02);
+        }
+
+        form input,
+        form textarea {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            margin-bottom: 15px;
+            border: 1px solid #00c3ff;
             border-radius: 4px;
-            border: 1px solid #555;
-            background-color: #222;
-            color: white;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
         }
-        .contact-form input[type="submit"] {
-            background-color: #007bff;
-            color: white;
+
+        form input:focus,
+        form textarea:focus {
+            border-color: #0099cc;
+            outline: none;
+        }
+
+        form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        form button[type="submit"] {
+            background: #00c3ff;
+            color: black;
+            padding: 12px 20px;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .contact-form input[type="submit"]:hover {
-            background-color: #0056b3;
+
+        form button[type="submit"]:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
         }
+
+        /* Contact info styles */
+        .contact-info {
+            background: #000000;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info h2 {
+            color: #00c3ff;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .contact-info ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #00c3ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #0099cc;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            form input,
+            form textarea {
+                font-size: 14px;
+            }
+
+            form button[type="submit"] {
+                font-size: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }   
     </style>
 </head>
 <body>
 
-
-
-    	<!--Contact form-->
+    <!--Contact form-->
     <div class="container">
         <h1>Contact Us</h1>
         <p>We'd love to hear from you! Please fill out the form below to get in touch with us:</p>

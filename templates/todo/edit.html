@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <style>
+        body {
+            background-color: rgb(0, 0, 0);
+            color: rgb(0, 251, 255);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 251, 255, 0.5);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid rgb(0, 251, 255);
+            border-radius: 5px;
+            background-color: rgb(20, 20, 20);
+            color: rgb(0, 251, 255);
+        }
+        input[type="submit"],
+        .back-button {
+            background-color: rgb(0, 251, 255);
+            color: black;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover,
+        .back-button:hover {
+            background-color: rgb(0, 200, 230);
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Task</h1>
+        <form method="POST">
+            {% csrf_token %} <!-- CSRF protection -->
+           <!-- edit_task we defind it in views its list and the 0 is the first task in this list the id thats mean i want the id for the item-->
+            <input type="hidden" name="edit_task_id" value="{{ edit_task.0.id }}"> <!-- 0 is the first item in the list-->
+            
+            <label for="title">Task Title:</label>
+            <input type="text" id="title" name="title" value="{{ edit_task.0.Title }}" required> <!-- 0 is the first item in the list-->
+
+            <label for="date">Due Date:</label>
+            <input type="date" id="date" name="date" value="{{ edit_task.0.Date|date:'Y-m-d' }}" required> <!-- 0 is the first item in the list and date is a function from django to convert the date to the format we want-->
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required>{{ edit_task.0.Description }}</textarea>
+
+            <input  type="submit" value="Save Changes">
+        </form>
+        <a href="{% url 'todo' %}">
+            <button class="back-button">Back</button>
+        </a>
+    </div>
+</body>
+</html>

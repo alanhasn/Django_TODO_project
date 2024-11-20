@@ -231,7 +231,6 @@
         </form>
     </div>
 </nav>
-
 <div class="container">
     <!-- Form for adding new tasks -->
     <form class="task-form" method="POST">
@@ -268,9 +267,9 @@
                             </label>
                         </form>
                         <div class="btn">
-                            <form method="POST" class="btn-form">
+                            <form method="POST" class="btn-form" action="{% url 'edit' %}">
                                 {% csrf_token %}
-                                <input type="hidden" name="edit_task_id" value="{{ task.task_text }}">
+                                <input type="hidden" name="edit_task_id" value="{{ task.id }}">
                                 <input type="submit" value="Edit" class="edit-button">
                             </form>
                             <!-- Task Info Button -->
@@ -301,7 +300,7 @@
                                 <input id="completed{{task.id}}" type="checkbox" name="completed" onchange="this.form.submit();" value="False" checked>
                                 <label for="completed{{task.id}}">
                                     <p class="task-title" title="{{ task.Title }}">
-                                        {{ task.Title|truncatechars:50 }}
+                                        {{ task.Title|truncatechars:50 }} 
                                     </p>      
                                 </label>
                             </form>

@@ -33,8 +33,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # my apps
     'main_page.apps.MainPageConfig',
     'Todo.apps.TodoConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,11 +120,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # For collected static files (production).
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # For collected static files.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'django_project/static'),  # This points to the static directory in your project folder.
 ]
