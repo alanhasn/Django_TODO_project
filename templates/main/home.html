@@ -123,9 +123,9 @@
             <p>Every task begins with a single step.<br> Start now and be the master of your time!</p>
             <p>With an organized list, small tasks turn into big accomplishments!</p>
             {% if user.is_authenticated %}
-                <a href="{% url 'todo' %}" class="start-button">Start Now</a>
+                <a href="{% url 'Todo:todo' %}" class="start-button">Start Now</a>
             {% else %}
-                <a href="{% url 'signup' %}" class="start-button">Start Now</a>
+                <a href="{% url 'main_page:signup' %}" class="start-button">Start Now</a>
             {% endif %}
         </div>
         <div class="image-section">

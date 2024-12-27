@@ -36,7 +36,6 @@
             display: inline-block;
             margin-top: 20px;
             color: #00c3ff;
-            text-decoration: none;
             padding: 10px 15px;
             border: 2px solid #00c3ff;
             border-radius: 5px;
@@ -62,7 +61,7 @@
         {% else %}
             <p>No task information available.</p>
         {% endif %}
-        <a href="{% url 'todo' %}" class="back-link">Back to TODO list</a> <!-- Adjust the URL as necessary -->
+        <a href="{% url 'Todo:todo' %}" class="back-link">Back to TODO list</a> <!-- Adjust the URL as necessary -->
     </div>
 
 </body>
