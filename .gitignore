@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+*.env
+.nmap_scanner_venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Database files
+*.sqlite3
+
+# Logs and debugging
+logs/
+*.log
+debug.log
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+
+# Python dependencies
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+.hypothesis/
+
+# Exclude PDF and PPTX files
+*.pdf
+*.pptx
+
+Copy of Untitled Diagram.html
+Copy of Untitled Diagram.drawio.html
+.hintrc
