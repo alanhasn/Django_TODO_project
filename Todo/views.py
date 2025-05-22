@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect ,HttpResponse , HttpResponseRedirect
 from django.contrib.auth.decorators import login_required 
-<<<<<<< HEAD
 from django.contrib import messages
-=======
->>>>>>> b71e10d733e15a6c7cf2820404b1e576904304e3
 from .models import Todo_list
 
 
@@ -81,37 +78,26 @@ def edit(request):
                 if description: # if there is description
                     edit_task.Description = description # update the description of the task
                 edit_task.save()  # Save changes
-<<<<<<< HEAD
- 
-=======
                 
->>>>>>> b71e10d733e15a6c7cf2820404b1e576904304e3
             except Todo_list.DoesNotExist:# handle Error
                 return HttpResponse("Task not found.",status=404) # return error message if task not found
 
     tasks = Todo_list.objects.filter(user=request.user) # Retrieve all tasks (both completed and incomplete)
     return render(request, "todo/edit.html", {"edit_task": [edit_task], "tasks": tasks}) # render the edit page and create context
-<<<<<<< HEAD
-
 
 @login_required
 def search(request):
     pass
-=======
+
 
 @login_required
 def search(request):
     info = None
     search_text = request.GET.get('search_text', '').strip()  # Get the search query and strip whitespace
-    
-    print(f"Search Text: '{search_text}'")  # Debugging: print the search text
-    
+        
     if search_text:  # Check if search_text is not empty
         info = Todo_list.objects.filter(user=request.user, Title=search_text)  # Use icontains for case-insensitive search
-        print(f"Tasks Found: {info}")  # Debugging: print the tasks found
     else:
         info = Todo_list.objects.filter(user=request.user)  # Optionally return all tasks if search_text is empty
-        print("No search text provided, returning all tasks.")
-    
+
     return render(request, "todo/search_results.html", {"info": info})
->>>>>>> b71e10d733e15a6c7cf2820404b1e576904304e3

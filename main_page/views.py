@@ -86,6 +86,7 @@ class Signup(View):
             return render(request, 'main/signup.html')  # Render the signup form for GET requests
 
 
-def Logout(request):
-    logout(request) # logout the user
-    return redirect('main_page:home') # redirect to home page
+class Logout(View):
+    def get(request):
+        logout(request)
+        return redirect('main_page:home')

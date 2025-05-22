@@ -1,83 +1,94 @@
-{% extends '../base.html' %}
-
-{% block content %}
+{% extends '../base.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - Simorg Todo App</title>
     <style>
-        body {
-            background-color: black;
-            font-family: Arial, sans-serif;
-            color: white;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1 {
-            color: #00b0c7;
-            text-align: center;
-        }
-        
-        p {
-            color: #dcdcdc;
-        }
-        .btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .start-button {
-            display: inline-block; 
-            text-decoration: none;
-            padding: 12px 20px; 
-            background-color: #00ccff; 
-            color: #ffffff; 
-            border: none; 
-            border-radius: 5px; 
-            font-size: 1.2em; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            transition: background-color 0.3s; 
-        }
+      body {
+        background-color: black;
+        font-family: Arial, sans-serif;
+        color: white;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+      }
+      h1 {
+        color: #00b0c7;
+        text-align: center;
+      }
 
-        .start-button:hover { 
-            background-color: rgba(0, 195, 255, 0.8); /* Button hover color */
-            transform: scale(1.05);
-            text-decoration: none;
-            color: white;
-            box-shadow: 5px 4px 5px 1px;
-            transition: background-color 0.3s;
-            transition: box-shadow 0.3s; 
-        }
+      p {
+        color: #dcdcdc;
+      }
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .start-button {
+        display: inline-block;
+        text-decoration: none;
+        padding: 12px 20px;
+        background-color: #00ccff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .start-button:hover {
+        background-color: rgba(0, 195, 255, 0.8); /* Button hover color */
+        transform: scale(1.05);
+        text-decoration: none;
+        color: white;
+        box-shadow: 5px 4px 5px 1px;
+        transition: background-color 0.3s;
+        transition: box-shadow 0.3s;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Welcome to Simorg Todo App</h1>
-        <p>
-            Simorg Todo is designed to help you stay organized and efficient. Our app provides a simple and intuitive way for you to manage your tasks, whether they're work-related, personal, or anything in between. With Simorg Todo, you can easily add, edit, and track tasks, ensuring you never miss a deadline.
-        </p>
-        <p>
-            Our goal is to provide users with a streamlined, distraction-free task management experience. The interface is designed to be minimalist, so you can focus on what matters the most: getting things done. With features like task completion tracking, prioritization, and a user-friendly design, Simorg Todo makes managing your to-do list a breeze.
-        </p>
-        <p>
-            We are continuously improving and expanding the app’s features based on user feedback. Our mission is to help you achieve more with less effort, so you can spend more time doing what you love, while staying productive.
-        </p>
-        <p>
-            Thank you for choosing Simorg Todo. Let’s stay organized and achieve our goals together.
-        </p>
+      <h1>Welcome to Simorg Todo App</h1>
+      <p>
+        Simorg Todo is designed to help you stay organized and efficient. Our
+        app provides a simple and intuitive way for you to manage your tasks,
+        whether they're work-related, personal, or anything in between. With
+        Simorg Todo, you can easily add, edit, and track tasks, ensuring you
+        never miss a deadline.
+      </p>
+      <p>
+        Our goal is to provide users with a streamlined, distraction-free task
+        management experience. The interface is designed to be minimalist, so
+        you can focus on what matters the most: getting things done. With
+        features like task completion tracking, prioritization, and a
+        user-friendly design, Simorg Todo makes managing your to-do list a
+        breeze.
+      </p>
+      <p>
+        We are continuously improving and expanding the app’s features based on
+        user feedback. Our mission is to help you achieve more with less effort,
+        so you can spend more time doing what you love, while staying
+        productive.
+      </p>
+      <p>
+        Thank you for choosing Simorg Todo. Let’s stay organized and achieve our
+        goals together.
+      </p>
     </div>
     <div class="btn">
-        <a  href="{% url 'Todo:todo' %}" class="start-button">Start For Free</a>
+      <a href="{% url 'Todo:todo' %}" class="start-button">Start For Free</a>
     </div>
-</body>
+  </body>
 </html>
 {% endblock content %}

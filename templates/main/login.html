@@ -1,159 +1,170 @@
-{% extends '../base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends '../base.html' %} {% load static %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
 
     <style>
-        body {
-            background: linear-gradient(135deg, #00c3ff, rgba(0, 0, 0, 0.9));
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            margin: 0;
-            animation: backgroundChange 10s infinite alternate;
-        }
+      body {
+        background: linear-gradient(135deg, #00c3ff, rgba(0, 0, 0, 0.9));
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        margin: 0;
+        animation: backgroundChange 10s infinite alternate;
+      }
 
-        .login-container {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            width: 350px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            margin: auto; /* Center container */
-            margin-top: 100px;
-            backdrop-filter: blur(10px); /* Adding a blur effect */
-        }
+      .login-container {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        width: 350px;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        margin: auto; /* Center container */
+        margin-top: 100px;
+        backdrop-filter: blur(10px); /* Adding a blur effect */
+      }
 
-        .input-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-            width: 100%;
-        }
+      .input-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+        width: 100%;
+      }
 
-        .input-group input {
-            width: 80%;
-            padding: 10px 10px 10px 40px;
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-            color: #000000; /* Input text color */
-            font-size: 16px;
-            transition: border-color 0.3s, background-color 0.3s;
-        }
+      .input-group input {
+        width: 80%;
+        padding: 10px 10px 10px 40px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        color: #000000; /* Input text color */
+        font-size: 16px;
+        transition: border-color 0.3s, background-color 0.3s;
+      }
 
-        .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
+      .input-group input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
 
-        .input-group input:focus {
-            border-color: #00c3ff; /* Focus border color */
-            outline: none;
-            background-color: rgba(0, 195, 255, 0.1); /* Background color on focus */
-        }
+      .input-group input:focus {
+        border-color: #00c3ff; /* Focus border color */
+        outline: none;
+        background-color: rgba(
+          0,
+          195,
+          255,
+          0.1
+        ); /* Background color on focus */
+      }
 
-        .input-group i {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-        }
+      .input-group i {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.7);
+      }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            color: white;
-            background: linear-gradient(135deg, #00c3ff, #2300ff);
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
+      button {
+        width: 100%;
+        padding: 10px;
+        color: white;
+        background: linear-gradient(135deg, #00c3ff, #2300ff);
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
 
-        button:hover {
-            background: linear-gradient(135deg, #2300ff, #00c3ff);
-            transform: scale(1.05);
-        }
+      button:hover {
+        background: linear-gradient(135deg, #2300ff, #00c3ff);
+        transform: scale(1.05);
+      }
 
-        .forgot-password {
-            text-align: center;
-            margin-top: 1rem;
-        }
+      .forgot-password {
+        text-align: center;
+        margin-top: 1rem;
+      }
 
-        .forgot-password a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+      .forgot-password a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
 
-        .forgot-password a:hover {
-            color: #00c3ff; /* Change color on hover */
-        }
+      .forgot-password a:hover {
+        color: #00c3ff; /* Change color on hover */
+      }
 
-        form h1 {
-            text-align: center;
-            color: white;
-            margin-bottom: 1rem;
-        }
+      form h1 {
+        text-align: center;
+        color: white;
+        margin-bottom: 1rem;
+      }
 
-        .messages {
-            margin-bottom: 1rem;
-            color: white;
-            text-align: center;
-        }
+      .messages {
+        margin-bottom: 1rem;
+        color: white;
+        text-align: center;
+      }
 
-        .messages .message {
-            padding: 10px;
-            background: rgb(255, 0, 0);
-            border-radius: 5px;
-            margin-bottom: 0.5rem;
-        }
+      .messages .message {
+        padding: 10px;
+        background: rgb(255, 0, 0);
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+      }
 
-        .messages .success {
-            background: rgba(0, 255, 0, 0.7);
-        }
+      .messages .success {
+        background: rgba(0, 255, 0, 0.7);
+      }
 
-        @keyframes backgroundChange {
-            0% { background-color: rgba(0, 0, 0, 0.9); }
-            100% { background-color: rgba(255, 0, 21, 0.758); }
+      @keyframes backgroundChange {
+        0% {
+          background-color: rgba(0, 0, 0, 0.9);
         }
-    </style>    
-</head>
-<body>
+        100% {
+          background-color: rgba(255, 0, 21, 0.758);
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="login-container">
-        <form method="POST">
-            <h1>LOGIN</h1>
-            {% csrf_token %} 
-            {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="username" placeholder="Username" required> 
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required> 
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <div class="forgot-password">
-            <a href="#">Forgotten your Password?</a>
+      <form method="POST">
+        <h1>LOGIN</h1>
+        {% csrf_token %} {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <div
+            class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+          </div>
+          {% endfor %}
         </div>
+        {% endif %}
+
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" name="username" placeholder="Username" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <div class="forgot-password">
+        <a href="#">Forgotten your Password?</a>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
 
 {% endblock content %}

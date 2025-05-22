@@ -11,3 +11,5 @@ class Todo_list(models.Model):
 
     def __str__(self):
         return self.Title
+    
+    
